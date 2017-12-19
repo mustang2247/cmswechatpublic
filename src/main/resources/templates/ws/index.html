@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html class="ui-mobile">
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport"
-          content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"/>-->
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width"/>
     <title>币世界快讯首页</title>
     <meta name="keywords" content="比特币,bitcoin,比特币网址导航,海外炒币,比特币行情"/>
     <meta name="description" content="比特币等数字货币交易所投资理财市场行情第一站"/>
@@ -12,9 +11,9 @@
     <link rel="stylesheet" href="/ws/css/jquery-labelauty.css"/><!--筛选控件-->
     <link href="/ws/css/reset.css" rel="stylesheet" type="text/css"/>
     <link href="/ws/css/public.css?v=1025" rel="stylesheet" type="text/css"/>
+
     <script src="/ws/js/jquery-1.8.3.min.js"></script>
     <script src="/ws/js/jquery.mobile-1.4.5.min.js"></script>
-    <!--<link href="/ws/image/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon"/>-->
 
     <style type="text/css">
         p {
@@ -26,22 +25,22 @@
             user-select: none;
         }
     </style>
-    <script type="text/javascript">
-        jQuery(function ($) {
-            $("#kuaixun_list").on("taphold", 'p', function (event) {
-                event.preventDefault();
-                var obj = $(this).parent().next().children('.share_btn');
-                shareKuaixun(obj.data('news-id'), obj.data('news-time'));
-            });
-            $('#kuaixun_list').on('click', '.share_btn', function (event) {
-                shareKuaixun($(this).data('news-id'), $(this).data('news-time'));
-            });
+    <!--<script type="text/javascript">-->
+        <!--jQuery(function ($) {-->
+            <!--$("#kuaixun_list").on("taphold", 'p', function (event) {-->
+                <!--event.preventDefault();-->
+                <!--var obj = $(this).parent().next().children('.share_btn');-->
+                <!--shareKuaixun(obj.data('news-id'), obj.data('news-time'));-->
+            <!--});-->
+            <!--$('#kuaixun_list').on('click', '.share_btn', function (event) {-->
+                <!--shareKuaixun($(this).data('news-id'), $(this).data('news-time'));-->
+            <!--});-->
 
-            $('p').bind('contextmenu', function (e) {
-                e.preventDefault();
-            })
-        });
-    </script>
+            <!--$('p').bind('contextmenu', function (e) {-->
+                <!--e.preventDefault();-->
+            <!--})-->
+        <!--});-->
+    <!--</script>-->
 
 </head>
 
@@ -63,123 +62,8 @@
 </div>
 
 <div id="kuaixun_list">
-    <div class="daynews dateitem">
-        <h2>12月15日&middot;星期五&middot;今天 </h2>
-        <article>
-            <h3><em></em>16:00</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">【OKEx上线TNB交易】今天OKEx发布公告，将于12月15日16:00上线Time New
-                    Bank(TNB)交易。TNB是时间商品价值传递结算代币。目前全球均价0.4108，涨幅40.48%。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5817" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:59</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">【EOS利好消息
-                    未来版权签约东野圭吾《濒死之眼》】本周，未来版权独家取得了东野圭吾小说《濒死之眼》中华区全版权，该小说将通过未来版权平台的运作，以原著改编为中文的电影、连续剧、网剧、动画动漫及其衍生产品，这将是未来版权平台即将启动运营的首个商业化IP项目。未来版权（UnlimitedIP）是由链娱科技基于EOS打造的一款文娱版权智能交易平台。未来版权UIP将是最早期基于EOS生态开发的分布式应用之一，现已获得INBlockchain、太一云等机构投资。据OKEX行情显示，EOS现价7.59美元，跌幅3.07%。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5815" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:49</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">
-                    【CNBC：德意志交易所发言人称无法证实有关德交所将推出比特币期货的报道】据CNBC报道，德意志交易所发言人称，他们不能证实德国《经济周刊》有关德交所将推出比特币期货的这一报道，但同时表示，该公司正在关注这种新的资产类别。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5813" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:38</h3>
-            <section class="focus" onclick="showMoreText(this);">
-                <p class="text_show">【XRP市值超BCH
-                    列全球第三】行情显示，XRP流通市值达到2069亿元人民币，超过BCH的1962亿元人民币，成为第三大币种。在本月13日，XRP市值超LTC，升至第四位，经过2天时间，又上升一位。目前XRP仍上涨，涨幅42.49%，BCH跌幅8.31%。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5811" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:27</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">
-                    【南非税务服务研究追踪比特币交易的方法】监管机构、政府和税务人员都对如何跟上快速增长的加密货币市场感到困惑。在市场上出现了一个大的灰色区域，在这个市场上，通常事件一发生就会被处理。为了实现这一目标，南非税务机构——南非税务机构正在寻求来自世界各地的顶级科技公司的帮助以尝试追踪比特币交易。南非税务署(SARS)的这一尝试可能会开启一种蠕虫病毒，因为隐私权会被深深灌输到比特币的透明而匿名的交易中。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5809" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:23</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">【莱特币今年一度暴涨8000% 连创始人都很吃惊：“千万别押上全部身家 ”】莱特币创建人Charlie
-                    Lee（李启威）说：“今年它涨了这么多，真令人吃惊。”不久前他警告：“必须负责任地投资。不要把毕生积蓄全都拿去买加密货币，谨防它暴跌80%。”</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5807" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:19</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">【德银解析BTC暴涨幕后推手 带杠杆的“渡边先生”】德意志银行全球金融策略师Masao
-                    Muraki新近报告提到，本月日经新闻报道称，这两个月40%的成交比特币都是用日元交易。日本“推手”群像：人到中年、不大懂金融、青睐高回报、惯用杠杆，可以被统称为“渡边先生”。德银提到，虽然法币和数字货币的‘汇率’估值应该是重要因素，但目前承担价值发现任务的却是包括“渡边先生”在内的散户。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5805" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>15:06</h3>
-            <section class="focus" onclick="showMoreText(this);">
-                <p class="text_show">
-                    【史玉柱、王亚伟投资OKEx】OKEX今日公告，已于近期完成新一轮融资，融资金额为数千万美元。投资方包括史玉柱的巨人网络集团、王亚伟的千合资本、艺龙旅行网创始人唐越先生、美图公司董事长蔡文胜的隆岭资本，早期投资方策源创投等进行了跟投。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5803" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-                <a href="https://support.okex.com/hc/zh-cn/articles/115003473912-OKEX%E9%9B%86%E5%9B%A2%E5%B7%B2%E8%8E%B7%E5%B7%A8%E4%BA%BA%E9%9B%86%E5%9B%A2"
-                   class="full_text" title="查看币世界数字货币快讯源的内容" rel="nofollow">查看详情</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>14:53</h3>
-            <section onclick="showMoreText(this);">
-                <p class="text_show">【OKEx上线XRP】据OKEx官方公告，将上线Ripple(XRP)，12月15日15:00开放XRP充值和交易;
-                    12月15日20:00开放XRP提现。最近XRP利好不断，已经连续大涨3天，现价0.8247美元，24小时涨幅高达42.46%。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5799" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
-        <article>
-            <h3><em></em>14:44</h3>
-            <section class="focus" onclick="showMoreText(this);">
-                <p class="text_show">
-                    【以太坊核心开发者会议今晚召开】以太坊核心开发者会议将于北京时间15日22：00举行。议程如下：1.测试更新；2.数字猫在本月造成网络拥堵；3.抗量子密码学计划以及下一次更新计划是否会包含它；4.K-EVM团队介绍；5.黄皮书的目的是成为以太坊的正式规范吗。如果时间允许将开展以下议程：6.
-                    以太坊钱包Parity拥堵建议；7. POA 测试网统一更新；8.核心团队更新。</p>
-                <div class="text_show" style="display: none;" ><span class="more more1"><em></em>显示全部</span></div>
-            </section>
-            <div class="sec_bottom_btn clearfix">
-                <a href="#" class="share_btn" data-news-id="5797" data-news-time="201712" title="分享币世界数字货币快讯给好朋友">分享</a>
-            </div>
-        </article>
+    <div id="kuaixun_list_items" class="daynews dateitem">
     </div>
-
 </div>
 
 <div style="height:30px; margin-bottom: 15px; background-color:white;"></div>
@@ -190,29 +74,14 @@
     <div class="closebtn"><a href="javascript:hideTip();">关闭</a></div>
 </div>
 <!--顶部提示框-->
-<div class="top_tips" style="display: none;">请长按图片，将本条快讯推荐给好友</div>
+<!--<div class="top_tips" style="display: none;">请长按图片，将本条快讯推荐给好友</div>-->
 
 
 <!--<script src="/ws/home/js/wx-share.js"></script>-->
+<script src="/ws/sockjs.min.js"></script>
 <script type="text/javascript" src="/ws/kuaixun.js"></script>
-<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<!--<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>-->
 
-<div id="overlay"></div>
-<!-- 百度统计 -->
-<!--<script>-->
-<!--var _hmt = _hmt || [];-->
-<!--(function () {-->
-<!--var hm = document.createElement("script");-->
-<!--hm.src = "https://hm.baidu.com/hm.js?760519477a6dd9d6ef4ae6014436ab92";-->
-<!--var s = document.getElementsByTagName("script")[0];-->
-<!--s.parentNode.insertBefore(hm, s);-->
-<!--})();-->
-<!--</script>-->
-
-<!--&lt;!&ndash; CNZZ统计 &ndash;&gt;-->
-<!--<div style="display:none;">-->
-<!--<script src="https://s22.cnzz.com/z_stat.php?id=1265004505&web_id=1265004505" language="JavaScript"></script>-->
-<!--</div>-->
 
 </body>
 </html>

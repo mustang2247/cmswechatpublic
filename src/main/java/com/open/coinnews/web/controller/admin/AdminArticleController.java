@@ -12,6 +12,8 @@ import com.open.coinnews.basic.auth.dto.AuthToken;
 import com.open.coinnews.basic.auth.tools.TokenTools;
 import com.open.coinnews.basic.exception.SystemException;
 import com.open.coinnews.basic.tools.*;
+import com.open.coinnews.ws.cmsnews.CmsNewsTimer;
+import com.open.coinnews.ws.cmsnews.MessageType;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -113,6 +115,8 @@ public class AdminArticleController {
             article.setCreateDate(new Date());
             addOrUpdateTags(article.getTags());
             articleService.save(article);
+
+//            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
         }
         return "redirect:/admin/article/list";
     }
@@ -145,6 +149,8 @@ public class AdminArticleController {
 
         model.addAttribute("article", article);
         model.addAttribute("cateList", categoryService.findAll());
+
+        CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
         return "admin/article/update";
     }
 
@@ -187,6 +193,8 @@ public class AdminArticleController {
 
             articleService.save(art);
             addOrUpdateTags(art.getTags());
+
+            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
         }
         return "redirect:/admin/article/list";
     }
@@ -197,6 +205,8 @@ public class AdminArticleController {
     String delete(@PathVariable Integer id) {
         try {
             articleService.delete(id);
+
+            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
             return "1";
         } catch (Exception e) {
             return "0";

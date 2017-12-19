@@ -1,6 +1,6 @@
 package com.open.coinnews.config;
 
-import com.open.coinnews.ws.snake.SnakeWebSocketHandler;
+import com.open.coinnews.ws.cmsnews.CmsNewsWebSocketHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.WebSocketHandler;
@@ -13,15 +13,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(snakeWebSocketHandler(), "/snake").withSockJS();
+        registry.addHandler(cmsNewsWebSocketHandler(), "/newsws").setAllowedOrigins("*").withSockJS();
     }
 
-    /**
-     * 贪吃蛇
-     * @return
-     */
     @Bean
-    public WebSocketHandler snakeWebSocketHandler() {
-        return new PerConnectionWebSocketHandler(SnakeWebSocketHandler.class);
+    public WebSocketHandler cmsNewsWebSocketHandler() {
+        return new PerConnectionWebSocketHandler(CmsNewsWebSocketHandler.class);
     }
+
 }

@@ -25,6 +25,7 @@ import com.open.coinnews.basic.tools.SearchCriteria;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.domain.Specifications;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -52,6 +53,7 @@ public class CmsNewsTimer {
 
     private static IArticleService articleService;
     private static ApplicationContext applicationContext;
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public static void applicationContext(ApplicationContext context){
         applicationContext = context;
@@ -115,18 +117,18 @@ public class CmsNewsTimer {
      * @return
      */
     private static String getMessage(Integer messageType) {
-        Specifications<Article> spe = Specifications.where(new BaseSpecification<>(new SearchCriteria("createDate", BaseSpecification.EQUAL, new Date())));
-
+        Specifications<Article> spe = Specifications.where(new BaseSpecification<>(
+                new SearchCriteria("createDate", BaseSpecification.EQUAL, new java.sql.Date(new Date().getTime()))));
         JSONObject object = new JSONObject();
         object.put("type", messageType);
 
         if (articleService == null){
             articleService = applicationContext.getBean(IArticleService.class);
         }
-        object.put("data", articleService.findAll());
-//        object.put("data", articleService.findAll(spe));
+//        object.put("data", articleService.findAll());
+        object.put("data", articleService.findAll(spe));
 
-        System.out.println("########### getMessage  " + object.toJSONString());
+//        System.out.println("########### getMessage  " + object.toJSONString());
         return object.toJSONString();
     }
 }

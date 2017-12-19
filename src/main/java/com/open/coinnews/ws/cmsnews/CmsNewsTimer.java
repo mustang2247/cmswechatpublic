@@ -20,11 +20,15 @@ package com.open.coinnews.ws.cmsnews;
 import com.alibaba.fastjson.JSONObject;
 import com.open.coinnews.app.model.Article;
 import com.open.coinnews.app.service.IArticleService;
-import com.open.coinnews.basic.tools.BaseSpecification;
-import com.open.coinnews.basic.tools.SearchCriteria;
 import org.springframework.context.ApplicationContext;
-import org.springframework.data.jpa.domain.Specifications;
+import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Collections;
@@ -117,9 +121,35 @@ public class CmsNewsTimer {
      * @return
      */
     private static String getMessage(Integer messageType) {
-        Specifications<Article> spe = Specifications.where(new BaseSpecification<>(
-                new SearchCriteria("createDate", BaseSpecification.EQUAL, new java.sql.Date(new Date().getTime()))));
-        JSONObject object = new JSONObject();
+//        Specifications<Article> spe = Specifications.where(new BaseSpecification<>(
+//                new SearchCriteria("createDate", BaseSpecification.EQUAL, new java.sql.Date(new Date().getTime()))));
+        DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
+        Date d=new Date();
+        String str=format.format(d);
+//        System.out.println(str);
+        Date begin= null;
+        try {
+            begin = format.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(d2);
+        /////////////////得到想要测试的时间整天
+
+        int dayMis=1000*60*60*24;//一天的毫秒-1
+//        System.out.println("一天的毫秒-1:"+dayMis);
+        //返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数。
+        long curMillisecond=begin.getTime();//当天的毫秒
+//        System.out.println("curMillisecond:"+new Date(curMillisecond));
+        long resultMis=curMillisecond+(dayMis-1); //当天最后一秒
+//        System.out.println("resultMis:"+resultMis);
+
+        //得到我需要的时间    当天最后一秒
+        Date resultDate=new Date(resultMis);
+
+        Specification<Article> spe = searchBySubmitDate(begin, resultDate);
+
+                JSONObject object = new JSONObject();
         object.put("type", messageType);
 
         if (articleService == null){
@@ -130,5 +160,19 @@ public class CmsNewsTimer {
 
 //        System.out.println("########### getMessage  " + object.toJSONString());
         return object.toJSONString();
+    }
+
+    private static Specification<Article> searchBySubmitDate(final Date startDate,
+                                                final Date endDate) {
+        return new Specification<Article>() {
+            @Override
+            public Predicate toPredicate(Root<Article> transaction,
+                                         CriteriaQuery<?> q, CriteriaBuilder cb) {
+                Predicate between = cb.between(transaction.get("createDate"), startDate, endDate);
+
+                return between;
+            }
+        };
+
     }
 }

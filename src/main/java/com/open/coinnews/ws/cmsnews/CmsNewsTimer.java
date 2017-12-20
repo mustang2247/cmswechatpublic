@@ -20,6 +20,7 @@ package com.open.coinnews.ws.cmsnews;
 import com.alibaba.fastjson.JSONObject;
 import com.open.coinnews.app.model.Article;
 import com.open.coinnews.app.service.IArticleService;
+import com.open.coinnews.basic.tools.SortTools;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -30,6 +31,7 @@ import javax.persistence.criteria.Root;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
@@ -104,12 +106,12 @@ public class CmsNewsTimer {
      * @throws Exception
      */
     public static void broadcast(Integer messageType, String message) {
+        String jsonData = getMessage(messageType);
         Collection<User> users = new CopyOnWriteArrayList<>(CmsNewsTimer.getUsers());
         for (User user : users) {
             try {
-                user.sendMessage(getMessage(messageType));
+                user.sendMessage(jsonData);
             } catch (Throwable ex) {
-                // if User#sendMessage fails the client is removed
                 removeUser(user);
             }
         }
@@ -121,28 +123,18 @@ public class CmsNewsTimer {
      * @return
      */
     private static String getMessage(Integer messageType) {
-//        Specifications<Article> spe = Specifications.where(new BaseSpecification<>(
-//                new SearchCriteria("createDate", BaseSpecification.EQUAL, new java.sql.Date(new Date().getTime()))));
         DateFormat format=new SimpleDateFormat("yyyy-MM-dd");
         Date d=new Date();
         String str=format.format(d);
-//        System.out.println(str);
         Date begin= null;
         try {
             begin = format.parse(str);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//        System.out.println(d2);
-        /////////////////得到想要测试的时间整天
-
         int dayMis=1000*60*60*24;//一天的毫秒-1
-//        System.out.println("一天的毫秒-1:"+dayMis);
-        //返回自 1970 年 1 月 1 日 00:00:00 GMT 以来此 Date 对象表示的毫秒数。
         long curMillisecond=begin.getTime();//当天的毫秒
-//        System.out.println("curMillisecond:"+new Date(curMillisecond));
         long resultMis=curMillisecond+(dayMis-1); //当天最后一秒
-//        System.out.println("resultMis:"+resultMis);
 
         //得到我需要的时间    当天最后一秒
         Date resultDate=new Date(resultMis);
@@ -155,8 +147,8 @@ public class CmsNewsTimer {
         if (articleService == null){
             articleService = applicationContext.getBean(IArticleService.class);
         }
-//        object.put("data", articleService.findAll());
-        object.put("data", articleService.findAll(spe));
+        object.put("data", articleService.findAll(spe, SortTools.basicSort("desc", "createDate")));
+        object.put("datetime", dateToStr(new Date()));
 
 //        System.out.println("########### getMessage  " + object.toJSONString());
         return object.toJSONString();
@@ -175,4 +167,47 @@ public class CmsNewsTimer {
         };
 
     }
+
+    public static String dateToStr(java.util.Date dateDate) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = formatter.format(dateDate);
+        return dateString + "&middot;" + getWeek(dateDate);
+    }
+
+    /**
+     * 根据一个日期，返回是星期几的字符串
+     *
+     * @param date
+     * @return
+     */
+    public static String getWeek(Date date) {
+        // 再转换为时间
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        // int hour=c.get(Calendar.DAY_OF_WEEK);
+        // hour中存的就是星期几了，其范围 1~7
+        // 1=星期日 7=星期六，其他类推
+        return getWeekStr(c.get(Calendar.DAY_OF_WEEK));
+    }
+
+    public static String getWeekStr(int w){
+        String str = "";
+        if(w == 1){
+            str = "星期日";
+        }else if(w == 2){
+            str = "星期一";
+        }else if(w == 3){
+            str = "星期二";
+        }else if(w == 4){
+            str = "星期三";
+        }else if(w == 5){
+            str = "星期四";
+        }else if(w == 6){
+            str = "星期五";
+        }else if(w == 7){
+            str = "星期六";
+        }
+        return str;
+    }
+
 }

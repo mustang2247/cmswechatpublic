@@ -116,7 +116,11 @@ public class AdminArticleController {
             addOrUpdateTags(article.getTags());
             articleService.save(article);
 
-//            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+            try {
+                CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
         return "redirect:/admin/article/list";
     }
@@ -150,7 +154,11 @@ public class AdminArticleController {
         model.addAttribute("article", article);
         model.addAttribute("cateList", categoryService.findAll());
 
-        CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+        try {
+            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "admin/article/update";
     }
 
@@ -194,7 +202,11 @@ public class AdminArticleController {
             articleService.save(art);
             addOrUpdateTags(art.getTags());
 
-            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+            try {
+                CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
         return "redirect:/admin/article/list";
     }
@@ -206,7 +218,11 @@ public class AdminArticleController {
         try {
             articleService.delete(id);
 
-            CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+            try {
+                CmsNewsTimer.broadcast(MessageType.MESSAGE_TYPE_UPDATE, "update");
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return "1";
         } catch (Exception e) {
             return "0";

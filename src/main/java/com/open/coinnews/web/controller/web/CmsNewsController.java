@@ -30,7 +30,7 @@ public class CmsNewsController {
 //            //表示不可以初始化
 //            model.addAttribute("initFlag", false);
 //        }
-        return "ws/index";
+        return "index";
 //        return "ws/snake";
     }
 

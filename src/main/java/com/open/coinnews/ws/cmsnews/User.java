@@ -49,6 +49,14 @@ public class User {
         this.session.sendMessage(new TextMessage(msg));
     }
 
+    /**
+     * 连接是否有效
+     * @return
+     */
+    public boolean isDead(){
+        return this.session.isOpen();
+    }
+
     public void update() throws Exception {
 
     }

@@ -169,29 +169,16 @@ function showMoreText(wt) {
     }
 }
 
-
-//微信公众平台jssdk处理
-// var share_obj = {
-//     "appid": "wxba08178837090833",
-//     "timestamp": 1513324949,
-//     "noncestr": "测试",
-//     "sha1": "8d9b772311842eb4b6f728573ced535d20fc9960",
-//     "title": "币世界快讯：快人一步，尽晓币圈事",
-//     "url": "http:\/\/m.bishijie.com\/kuaixun",
-//     "imgUrl": "http:\/\/m.bishijie.com\/static\/home\/image\/logo.png",
-//     "desc": "【OKEx上线TNB交易】今天OKEx发布公告，将于12月15日16:00上线Time New Bank(TNB)交易。TNB是时间商品价值传递结算代币。目前全球均价0.4108，涨幅40.48%。"
-// };
-
 //===========websocket===========
 var Game = {};
 
 Game.socket = null;
 
-Game.updateNews = function (datas) {
+Game.updateNews = function (datas, datetime) {
     // Game.entities.innerHTML = "";
     $("#kuaixun_list_items").html("");
     var myDate = new Date();//获取系统当前时间
-    $("#kuaixun_list_items").append("<h2>&middot;星期五&middot;今天 </h2>");
+    $("#kuaixun_list_items").append("<h2>" + datetime + "&middot;今天 </h2>");
 
     if (datas != null && datas.length > 0) {
 
@@ -250,7 +237,7 @@ Game.connect = (function () {
         var packet = eval('(' + message.data + ')');
         var messageType = packet.type;
         // Console.log(messageType);
-        Game.updateNews(packet.data);
+        Game.updateNews(packet.data, packet.datetime);
     };
 
 });

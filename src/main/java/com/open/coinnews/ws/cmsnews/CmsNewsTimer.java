@@ -75,7 +75,7 @@ public class CmsNewsTimer {
             users.put(Integer.valueOf(user.getId()), user);
             userNum = userIds.getAndIncrement();
 
-            System.out.println("###########  " + userNum);
+//            System.out.println("###########  " + userNum);
             try {
                 user.sendMessage(getMessage(MessageType.MESSAGE_TYPE_INIT));
             } catch (Exception e) {
